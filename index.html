@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tauri + Vue 3 App</title>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+  <style>
+    html, body {
+  margin: 0;
+  padding: 0;
+  background-color: transparent !important; /* 强制背景透明 */
+  overflow: hidden; /* 防止出现滚动条导致窗口错位 */
+}
+  </style>
+  <script>
+    // 1. 禁止右键菜单（最基础）
+document.addEventListener('contextmenu', (e) => {
+  e.preventDefault(); // 阻止默认右键行为
+});
+
+// 2. 禁止 F12、Ctrl+Shift+I、Ctrl+U 等调试快捷键
+document.addEventListener('keydown', (e) => {
+  // 禁用 F12
+  if (e.key === 'F12') {
+    e.preventDefault();
+    return;
+  }
+  
+  // 禁用 Ctrl+Shift+I（打开开发者工具）
+  if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+    e.preventDefault();
+    return;
+  }
+  
+  // 禁用 Ctrl+U（查看网页源代码）
+  if (e.ctrlKey && e.key === 'u') {
+    e.preventDefault();
+    return;
+  }
+  
+  // 禁用 Ctrl+Shift+C（检查元素）
+  if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+    e.preventDefault();
+    return;
+  }
+  
+  // 禁用 F5 刷新（可选，根据需求决定是否保留）
+  if (e.key === 'F5' || (e.ctrlKey && e.key === 'r')) {
+     e.preventDefault();
+   }
+});
+
+// 3. 禁止通过鼠标双击/拖拽选中文字（可选，增强防护）
+// document.addEventListener('selectstart', (e) => {
+//   e.preventDefault();
+// });
+  </script>
+</html>
